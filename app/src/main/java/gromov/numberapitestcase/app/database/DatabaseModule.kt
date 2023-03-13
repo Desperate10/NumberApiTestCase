@@ -7,6 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import gromov.numberapitestcase.main_feature.data.local.dao.NumberDao
 import javax.inject.Singleton
 
 @Module
@@ -23,5 +24,10 @@ object DatabaseModule {
             AppDatabase::class.java,
             "numbers_db"
         ).build()
+    }
+
+    @Provides
+    fun provideNumberDao(appDatabase: AppDatabase) : NumberDao {
+        return appDatabase.numberDao()
     }
 }
